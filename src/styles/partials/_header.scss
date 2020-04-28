@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+header{
+  background-image: url("../../assets/headerBackground.png");
+  /* <a href='https://pngtree.com/so/cooking'>cooking png from pngtree.com</a> */
+  background-size: contain;
+  height:100vh;
+  background-color:rgba(230, 231, 233, 0.3);
+//   opacity: 0.3;
+}
+h1{
+  color:#e95e4e;
+  font-size: 5rem;
+}
