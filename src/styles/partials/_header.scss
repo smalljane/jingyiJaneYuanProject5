@@ -7,10 +7,57 @@ header{
   /* <a href='https://pngtree.com/so/cooking'>cooking png from pngtree.com</a> */
   background-size: contain;
   height:100vh;
-  background-color:rgba(230, 231, 233, 0.3);
-//   opacity: 0.3;
+  background-color:rgb(230, 231, 233);
+
+  div{
+    background-color:rgba(230, 231, 233,0.8);
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h1{
+    color:#e95e4e;
+    text-shadow: 2px 2px 3px #f89f95;
+    font-size: 7rem;
+    margin:0;
+  }
+  span{
+    display: inline-block;
+    transform: scale(-1, 1);
+  }
+  p{
+    font-size:2.5rem;
+  }
+  form{
+    display: flex;
+    justify-content: center;
+    input{
+        width: 20rem;
+        margin-right: 3rem;
+        padding: 1rem 0.5rem;
+        border: 0.2rem solid #e95e4e;
+        box-shadow: 2px 2px 3px #f89f95;
+        border-radius: 5px;
+        font-size: 1rem;
+    }
+    button{
+      color:white;
+      font-family: 'Varela Round', sans-serif;
+      font-size: 1rem;
+      width:7rem;
+      background-color:#f89f95;
+      border:0.2rem solid #f89f95;
+      border-radius: 5px;
+    }
+    button:hover{
+      background-color: #e95e4e;
+      border:0.2rem solid #e95e4e;
+    }
+    
+  }
+
+  
 }
-h1{
-  color:#e95e4e;
-  font-size: 5rem;
-}
+
