@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import Form from './Form.js'
-import RecipeDisplay from './RecipeDisplay.js';
+import FavRecipeDisplay from './FavRecipeDisplay.js';
+import firebase from './firebase.js';
 // import swal from '@sweetalert/with-react';
 // // font awsome
 // import { faHome } from "@fortawesome/free-solid-svg-icons";
@@ -14,15 +15,42 @@ class App extends Component {
     super();
     this.state = {
       recipeArray:[],
-      userInput: ''
+      userInput: '',
+      // addRecipe: true,
+      // removeRecipe: false,
+      favRecipes: []
     }
+    // this.resultRef = React.createRef();
   }
 
-  
-  // api call
+  // smooth scroll to result section
+  // smoothScroll = () => {
+  //   let element = this.resultRef.current
+  //   element.scrollIntoView({behavior:'smooth', block:'start'})
+  // }
+  // call functions when component did mount
   componentDidMount(){
     this.getRecipe();
+    this.loadFirebase();
   }
+
+  // firebase data
+  loadFirebase = () => {
+    const dbRef = firebase.database().ref();
+    dbRef.on('value',(response) => {
+      const newFavRecipes = [];
+      const data = response.val();
+
+      for (let item in data) {
+        newFavRecipes.push(data[item]);
+      }
+
+      this.setState({
+        favRecipes: newFavRecipes
+      })
+    })
+  }
+
 
   // axios api 
   getRecipe = () => {
@@ -44,6 +72,7 @@ class App extends Component {
       this.setState({
         recipeArray: res.data.hits
       })
+      // this.smoothScroll();
     })
   }
 
@@ -63,10 +92,25 @@ class App extends Component {
     // }
   }
 
+  // add recipe to favourite list in firbase when click 'save' button
+  addFavRecipe = (event,recipeItem) =>{
+    event.preventDefault();
+    const dbRef = firebase.database().ref()
+    dbRef.push(recipeItem);
+    console.log(recipeItem)
+
+  }
+
+  // function to remove restaurant from favourite list in firebse when click 'delete' button
+  delFavRecipe = () =>{
+
+  }
+
+
   render(){
     return (
       <div className="App">
-        <header>
+        <header className = "landingHeader">
           <div className ="wrapper">
               <h1>COOKS <span>'R'</span> US</h1>
               <p>What to Cook</p>
@@ -75,21 +119,28 @@ class App extends Component {
                 <button type="submit" onClick = {this.handleSubmit}>Find Yum</button>
               </form>
           </div>
+        </header>
+        <main>
           <ul className="recipeList">
             {this.state.recipeArray.map((recipe,i)=>{
+              let recipeItem = recipe.recipe
               return(
                 <li className= "recipeContainer" key={i}>
-                  <h2>{recipe.recipe.label}</h2>
-                  <img src={recipe.recipe.image} alt={recipe.recipe.label}/>
-                  <a href={recipe.recipe.url}>Full Recipe</a>
-                  <button>Save it</button>
+                  <h2>{recipeItem.label}</h2>
+                  <img src={recipeItem.image} alt={recipeItem.label}/>
+                  <a href={recipeItem.url}>Full Recipe</a>
+                  <button name="favButton" onClick = {(event)=>{this.addFavRecipe(event,recipeItem)}}>Save it</button>
                 </li>
               )
             })}
 
           </ul>
+        </main>
   
-        </header>
+        
+
+        <FavRecipeDisplay 
+        favRecipes = {this.state.favRecipes}/>
         <footer>
           <p>Copyright Jane Yuan 2020</p>
         </footer>

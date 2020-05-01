@@ -1,4 +1,4 @@
-import firebase from 'firbase/app';
+import firebase from '../node_modules/firebase/app';
 import 'firebase/database';
 
 // Your web app's Firebase configuration
@@ -13,3 +13,5 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+export default firebase
