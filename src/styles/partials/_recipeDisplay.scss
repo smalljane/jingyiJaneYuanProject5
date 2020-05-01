@@ -1,18 +1,33 @@
 .recipeList{
     display: flex;
     flex-wrap: wrap;
-    background-color:#f8eeee;
+    // background-color:#f8eeee;
     margin-top:0;
     font-family: 'Rubik', sans-serif;
     font-size:1rem;
 }
 .recipeContainer {
+    display: flex;
+    flex-direction: column;
     width:calc(30% - 4rem);
     margin:2rem;
     img{
-        border-radius: 50%;
+        border-radius: 5%;
     }
     p{
         font-size: 1rem;
     }
+    a{
+        color:white;
+        width: 40%;
+        background-color:#f38a7e;
+        border:0.2rem solid #f38a7e;
+        padding:0.5rem 0;
+        border-radius: 5px;
+        margin-top:1rem;
+    }
+    a:hover{
+        color:black;
+    }
+    
 }

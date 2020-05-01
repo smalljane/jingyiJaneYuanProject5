@@ -68,12 +68,12 @@ class App extends Component {
       <div className="App">
         <header>
           <div className ="wrapper">
-            <h1>COOKS <span>'R'</span> US</h1>
-            <p>What to Cook</p>
-            <form action="">
-              <input name= "userInput" type="text" value={this.state.userInput} onChange={this.handleUserInput} placeholder="enter an ingredient eg.beef" />
-              <button type="submit" onClick = {this.handleSubmit}>Find Yum</button>
-            </form>
+              <h1>COOKS <span>'R'</span> US</h1>
+              <p>What to Cook</p>
+              <form action="">
+                <input name= "userInput" type="text" value={this.state.userInput} onChange={this.handleUserInput} placeholder="enter an ingredient eg.beef" />
+                <button type="submit" onClick = {this.handleSubmit}>Find Yum</button>
+              </form>
           </div>
           <ul className="recipeList">
             {this.state.recipeArray.map((recipe,i)=>{
@@ -90,6 +90,9 @@ class App extends Component {
           </ul>
   
         </header>
+        <footer>
+          <p>Copyright Jane Yuan 2020</p>
+        </footer>
   
       </div>
     );
