@@ -14,12 +14,14 @@ class FavRecipeDisplay extends Component{
                     {this.props.favRecipes.length < 1 && <p>No Recipes saved yet...</p>}
                     <div>
                         {this.props.favRecipes.map((recipeItem, i)=>{
+                            let recipeName = recipeItem.recipeName
+                            let recipeId = recipeItem.recipeId
                             return (
                                 <li className="recipeContainer" key={i}>
-                                    <h2>{recipeItem.label}</h2>
-                                    <img src={recipeItem.image} alt={recipeItem.label} />
-                                    <a href={recipeItem.url}>Full Recipe</a>
-                                    {/* <button name="favButton" onClick={(event) => { this.addFavRecipe(event, recipeItem) }}>Save it</button> */}
+                                    <h2>{recipeName.label}</h2>
+                                    <img src={recipeName.image} alt={recipeName.label} />
+                                    <a href={recipeName.url}>Full Recipe</a>
+                                    <button name="delButton" onClick={(event) => {this.props.delFavRecipe(event, recipeId) }}>Delete</button>
                                 </li>
                             )
                         })}

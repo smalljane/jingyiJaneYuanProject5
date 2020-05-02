@@ -41,8 +41,8 @@ class App extends Component {
       const newFavRecipes = [];
       const data = response.val();
 
-      for (let item in data) {
-        newFavRecipes.push(data[item]);
+      for (let key in data) {
+        newFavRecipes.push({recipeName:data[key], recipeId:key});
       }
 
       this.setState({
@@ -50,7 +50,6 @@ class App extends Component {
       })
     })
   }
-
 
   // axios api 
   getRecipe = () => {
@@ -102,8 +101,10 @@ class App extends Component {
   }
 
   // function to remove restaurant from favourite list in firebse when click 'delete' button
-  delFavRecipe = () =>{
-
+  delFavRecipe = (event,recipeId) =>{
+    event.preventDefault();
+    const dbRef = firebase.database().ref()
+    dbRef.child(recipeId).remove();
   }
 
 
@@ -137,10 +138,10 @@ class App extends Component {
           </ul>
         </main>
   
-        
-
         <FavRecipeDisplay 
-        favRecipes = {this.state.favRecipes}/>
+        favRecipes = {this.state.favRecipes}
+        delFavRecipe = {this.delFavRecipe}/>
+{/* ------------------------------------------------Footer--------------------------------------------- */}
         <footer>
           <p>Copyright Jane Yuan 2020</p>
         </footer>
