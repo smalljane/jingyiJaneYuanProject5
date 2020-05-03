@@ -1,7 +1,7 @@
 
 body{
     font-size: 62.5%;
-    font-family: 'Croissant One', cursive;
+    font-family:$mainFont;
 }
 
 a{
@@ -16,4 +16,10 @@ li{
     margin:0 auto;
     max-width:1280px;
     width:85%;
+}
+
+@media (max-width:1000px){
+    .wrapper{
+        width:90%;
+    }
 }

@@ -1,18 +1,30 @@
+// general button styling 
 button{
     color:white;
-    font-family: 'Rubik', sans-serif;
+    font-family: $secondaryFont;
     font-size: 1rem;
-    background-color:#f38a7e;
-    border:0.2rem solid #f38a7e;
-    border-radius: 5px;
+    @include buttonStyling($secondaryRed);
 }
-button:hover{
-    background-color: #e95e4e;
-    border:0.2rem solid #e95e4e;
+button:hover,button:focus{
+    @include buttonStyling($mainRed);
 }
-
+// styling 'find yum' search button
 .submitButton{
     width:7rem;
     font-weight: bold;
+}
+// styling for save & delete button
+.favButton, .delButton{
+    height:2rem;
+    width:40%;
+}
+
+@media (max-width:500px){
+    button{
+        font-size:0.9rem;
+    }
+    .submitButton{
+        width:6rem;
+    }
 }
 

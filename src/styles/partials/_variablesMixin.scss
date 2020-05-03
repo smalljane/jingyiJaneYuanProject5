@@ -1,0 +1,13 @@
+$mainFont:'Croissant One', cursive;
+$secondaryFont:'Rubik', sans-serif;
+
+$mainRed:#e95e4e;
+$secondaryRed:#f38a7e;
+$lightPink:#f8eeee;
+
+
+@mixin buttonStyling ($buttonColor){
+    background-color:$buttonColor;
+    border:0.2rem solid $buttonColor;
+    border-radius: 5px;
+}

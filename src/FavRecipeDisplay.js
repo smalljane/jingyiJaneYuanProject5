@@ -7,7 +7,7 @@ class FavRecipeDisplay extends Component{
             <section className="favRecipes">
                 <header className ="favHeader">
                     <div className = "wrapper">
-                        <h2>See people's favourite recipes</h2>
+                        <h2>people's favourite recipes</h2>
                     </div>
                 </header>
                 <div className="wrapper">
@@ -18,7 +18,7 @@ class FavRecipeDisplay extends Component{
                             let recipeId = recipeItem.recipeId
                             return (
                                 <li className="favRecipeContainer" key={i}>
-                                    <h2>{recipeName.label}</h2>
+                                    <h3>{recipeName.label}</h3>
                                     <img src={recipeName.image} alt={recipeName.label} />
                                     <div>
                                         <a href={recipeName.url}>Full Recipe</a>

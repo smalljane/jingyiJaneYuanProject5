@@ -1,18 +1,24 @@
 footer { 
     font-size: 1rem;
-    // text-align: center;
-    padding: 0.5rem 0;
+    padding: 0.1rem 0;
     line-height: 1.5;
-    text-shadow: 1px 1px 1.5px #f8eeee;
-    background-color: #f38a7e;
+    text-shadow: 1px 1px 1.5px $lightPink;
+    background-color: $secondaryRed;
 
     a {
-        color: darkslategrey;
+        color: #2f4f4f;
 
         &:hover {
-            color:#f8eeee;
+            color:$lightPink;
             text-shadow: none;
-            border-bottom: 1px solid rgb(3, 124, 139);
+            border-bottom: 1px solid #037c8b;
         } 
     }
 } 
+
+@media (max-width:500px){
+    footer{
+        font-size:0.8rem;
+        line-height:0.8;
+    }
+}
