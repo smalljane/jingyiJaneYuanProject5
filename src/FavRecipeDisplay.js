@@ -12,20 +12,22 @@ class FavRecipeDisplay extends Component{
                 </header>
                 <div className="wrapper">
                     {this.props.favRecipes.length < 1 && <p>No Recipes saved yet...</p>}
-                    <div>
+                    <ul className="favRecipeList">
                         {this.props.favRecipes.map((recipeItem, i)=>{
                             let recipeName = recipeItem.recipeName
                             let recipeId = recipeItem.recipeId
                             return (
-                                <li className="recipeContainer" key={i}>
+                                <li className="favRecipeContainer" key={i}>
                                     <h2>{recipeName.label}</h2>
                                     <img src={recipeName.image} alt={recipeName.label} />
-                                    <a href={recipeName.url}>Full Recipe</a>
-                                    <button name="delButton" onClick={(event) => {this.props.delFavRecipe(event, recipeId) }}>Delete</button>
+                                    <div>
+                                        <a href={recipeName.url}>Full Recipe</a>
+                                        <button className="delButton" onClick={(event) => {this.props.delFavRecipe(event, recipeId) }}>Delete</button>
+                                    </div>
                                 </li>
                             )
                         })}
-                    </div>
+                    </ul>
                 </div>
             </section>
         )

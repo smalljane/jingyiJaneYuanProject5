@@ -4,9 +4,6 @@ import Form from './Form.js'
 import FavRecipeDisplay from './FavRecipeDisplay.js';
 import firebase from './firebase.js';
 // import swal from '@sweetalert/with-react';
-// // font awsome
-// import { faHome } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import './styles/styles.scss';
 
@@ -112,25 +109,29 @@ class App extends Component {
     return (
       <div className="App">
         <header className = "landingHeader">
-          <div className ="wrapper">
-              <h1>COOKS <span>'R'</span> US</h1>
-              <p>What to Cook</p>
-              <form action="">
-                <input name= "userInput" type="text" value={this.state.userInput} onChange={this.handleUserInput} placeholder="enter an ingredient eg.beef" />
-                <button type="submit" onClick = {this.handleSubmit}>Find Yum</button>
-              </form>
+          <div className = "backgroundColor">
+            <div className ="wrapper headerContent">
+                <h1>COOKS <span>'R'</span> US</h1>
+                <p>What to Cook</p>
+                <form action="">
+                  <input name= "userInput" type="text" value={this.state.userInput} onChange={this.handleUserInput} placeholder="enter an ingredient eg.beef" />
+                  <button className="submitButton" type="submit" onClick = {this.handleSubmit}>Find Yum</button>
+                </form>
+            </div>
           </div>
         </header>
         <main>
-          <ul className="recipeList">
+          <ul className="wrapper recipeList">
             {this.state.recipeArray.map((recipe,i)=>{
               let recipeItem = recipe.recipe
               return(
                 <li className= "recipeContainer" key={i}>
                   <h2>{recipeItem.label}</h2>
                   <img src={recipeItem.image} alt={recipeItem.label}/>
-                  <a href={recipeItem.url}>Full Recipe</a>
-                  <button name="favButton" onClick = {(event)=>{this.addFavRecipe(event,recipeItem)}}>Save it</button>
+                  <div>
+                    <a href={recipeItem.url}>Full Recipe</a>
+                    <button className="favButton" onClick = {(event)=>{this.addFavRecipe(event,recipeItem)}}>Save it</button>
+                  </div>
                 </li>
               )
             })}
@@ -143,7 +144,8 @@ class App extends Component {
         delFavRecipe = {this.delFavRecipe}/>
 {/* ------------------------------------------------Footer--------------------------------------------- */}
         <footer>
-          <p>Copyright Jane Yuan 2020</p>
+          <p>Copyright <span aria-hidden="true">&copy;</span> 2020 by <a href="https://www.itsjaneyuan.com" target="_blank">Jane
+                    Yuan</a></p>
         </footer>
   
       </div>

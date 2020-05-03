@@ -1,0 +1,18 @@
+footer { 
+    font-size: 1rem;
+    // text-align: center;
+    padding: 0.5rem 0;
+    line-height: 1.5;
+    text-shadow: 1px 1px 1.5px #f8eeee;
+    background-color: #f38a7e;
+
+    a {
+        color: darkslategrey;
+
+        &:hover {
+            color:#f8eeee;
+            text-shadow: none;
+            border-bottom: 1px solid rgb(3, 124, 139);
+        } 
+    }
+} 
