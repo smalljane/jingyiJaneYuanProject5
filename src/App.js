@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 import axios from 'axios';
 import FavRecipeDisplay from './FavRecipeDisplay.js';
 import firebase from './firebase.js';
-// import swal from '@sweetalert/with-react';
-
 import './styles/styles.scss';
 
 class App extends Component {
@@ -66,7 +64,10 @@ class App extends Component {
       this.setState({
         recipeArray: res.data.hits
       })
-      // this.smoothScroll();
+      // smooth scroll to result page once API call is made
+      if (this.state.recipeArray.length > 0){
+        this.smoothScroll();
+      }
     })
   }
 
@@ -84,8 +85,9 @@ class App extends Component {
       this.setState({
         userInput: event.target.value
       }, () => this.getRecipe())
-    // if (this.state.userInput !== '') {
-    // }
+      if (this.state.userInput == '') {
+        alert('please enter an ingredient')
+      }
   }
 
   // add recipe to favourite list in firbase when click 'save' button
@@ -93,8 +95,6 @@ class App extends Component {
     event.preventDefault();
     const dbRef = firebase.database().ref()
     dbRef.push(recipeItem);
-    console.log(recipeItem)
-
   }
 
   // function to remove restaurant from favourite list in firebse when click 'delete' button
@@ -116,14 +116,14 @@ class App extends Component {
                 <p>What to Cook</p>
                 {/* user input and search button*/}
                 <form action="">
-                  <input name= "userInput" type="text" value={this.state.userInput} onChange={this.handleUserInput} placeholder="enter an ingredient eg.egg" />
-                  <button className="submitButton" type="submit" onClick = {this.handleSubmit}>Find Yum</button>
+                  <input name="userInput" type="text" value={this.state.userInput} onChange={this.handleUserInput} placeholder="enter an ingredient eg.egg" required="true" />
+                  <button name ="search"className="submitButton" type="submit" onClick = {this.handleSubmit}>Find Yum</button>
                 </form>
             </div>
           </div>
         </header>
         <main ref={this.resultRef}>
-          {/* map out each recipes in the recipe array */}
+          {/* map out each recipes in the recipe array */}   
           <ul className="wrapper recipeList">
             {this.state.recipeArray.map((recipe,i)=>{
               let recipeItem = recipe.recipe
