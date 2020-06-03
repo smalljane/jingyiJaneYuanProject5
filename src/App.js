@@ -22,7 +22,7 @@ class App extends Component {
   }
   // call functions when component did mount
   componentDidMount(){
-    this.getRecipe();
+    // this.getRecipe();
     // firebase call to retrieve data when compnent did mount
     this.loadFirebase();
   }
