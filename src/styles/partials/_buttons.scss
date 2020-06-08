@@ -18,6 +18,16 @@ button:hover,button:focus{
     height:2rem;
     width:40%;
 }
+.likeButton{
+    border:none;
+    background: none;
+    color:$secondaryRed;
+    padding-top:1rem;
+}
+.likeButton:hover,.likeButton:focus{
+    border:none;
+    background: none;
+}
 
 @media (max-width:500px){
     button{

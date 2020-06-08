@@ -33,9 +33,9 @@ class App extends Component {
     dbRef.on('value',(response) => {
       const newFavRecipes = [];
       const data = response.val();
-
+      // unshift put newest things at the front
       for (let key in data) {
-        newFavRecipes.push({recipeName:data[key], recipeId:key});
+        newFavRecipes.unshift({recipeName:data[key], recipeId:key});
       }
 
       this.setState({
@@ -104,6 +104,15 @@ class App extends Component {
     dbRef.child(recipeId).remove();
   }
 
+  // handle like button click
+  handleLike = (recipeName,recipeId)=> {
+    recipeName.like = recipeName.like+1
+    const dbRef = firebase.database().ref(recipeId)
+    dbRef.update({
+      like:recipeName.like
+    })
+  }
+
 
   render(){
     return (
@@ -119,6 +128,7 @@ class App extends Component {
                   <input name="userInput" type="text" value={this.state.userInput} onChange={this.handleUserInput} placeholder="enter an ingredient eg.egg" required="true" />
                   <button name ="search"className="submitButton" type="submit" onClick = {this.handleSubmit}>Find Yum</button>
                 </form>
+                <p className="note">Note:you can only search up to 5 times / minute</p>
             </div>
           </div>
         </header>
@@ -127,13 +137,19 @@ class App extends Component {
           <ul className="wrapper recipeList">
             {this.state.recipeArray.map((recipe,i)=>{
               let recipeItem = recipe.recipe
+              // add 'like' key into the object, initial value 0
+              recipeItem['like'] = 0
               return(
                 <li className= "recipeContainer" key={i}>
                   <h2>{recipeItem.label}</h2>
                   <img src={recipeItem.image} alt={recipeItem.label}/>
                   <div>
                     <a href={recipeItem.url}>Full Recipe</a>
-                    <button className="favButton" onClick = {(event)=>{this.addFavRecipe(event,recipeItem)}}>Save it</button>
+                    <button className="favButton" 
+                    onClick = {(event)=>{
+                      this.addFavRecipe(event,recipeItem)
+                      alert ('Scroll down to see your saved recipe!')
+                      }}>Save it</button>
                   </div>
                 </li>
               )
@@ -144,7 +160,8 @@ class App extends Component {
         {/* Favourite recipes page */}
         <FavRecipeDisplay 
         favRecipes = {this.state.favRecipes}
-        delFavRecipe = {this.delFavRecipe}/>
+        delFavRecipe = {this.delFavRecipe}
+        likeButton = {this.handleLike}/>
 {/* ----------------------------------------Footer----------------------------------- */}
         <footer>
           <p>Copyright <span aria-hidden="true">&copy;</span> 2020 by <a href="https://www.itsjaneyuan.com" target="_blank">Jane Yuan</a></p>

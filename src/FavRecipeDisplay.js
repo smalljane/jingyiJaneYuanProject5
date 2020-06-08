@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 
 class FavRecipeDisplay extends Component{
-
+    constructor(){
+        super();
+        this.state={
+            liked:false
+        }
+    }
     render(){
         return(
             <section className="favRecipes">
@@ -20,6 +25,13 @@ class FavRecipeDisplay extends Component{
                                 <li className="favRecipeContainer" key={i}>
                                     <h3>{recipeName.label}</h3>
                                     <img src={recipeName.image} alt={recipeName.label} />
+                                    <button className="likeButton" onClick={()=>{
+                                        this.props.likeButton(recipeName,recipeId);
+                                        // this.setState({liked:true})
+                                    }}>
+                                    {/* // disabled={this.state.liked} */}
+                                        {recipeName.like} <i class="fas fa-heart"></i>
+                                    </button>
                                     <div>
                                         <a href={recipeName.url}>Full Recipe</a>
                                         <button className="delButton" onClick={(event) => {this.props.delFavRecipe(event, recipeId) }}>Delete</button>
